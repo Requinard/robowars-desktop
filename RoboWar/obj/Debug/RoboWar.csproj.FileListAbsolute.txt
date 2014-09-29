@@ -1,5 +1,4 @@
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\bin\Debug\RoboWar.exe.config
-c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.csprojResolveAssemblyReference.cache
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.Form1.resources
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.Properties.Resources.resources
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.csproj.GenerateResource.Cache
@@ -10,3 +9,4 @@ c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\bin
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\bin\Debug\SmarIrc4net.xml
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.exe
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.pdb
+c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.csprojResolveAssemblyReference.cache

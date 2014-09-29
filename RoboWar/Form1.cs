@@ -15,7 +15,9 @@ namespace RoboWar
     {
 
         public delegate void UpdateControl(object sender, IRCMessage message);
+        public delegate void UpdateStatsDel(GameStats stats);
         public IRC irc;
+        public Game game;
 
         public Form1()
         {
@@ -24,6 +26,8 @@ namespace RoboWar
 
         private void button_connect_Click(object sender, EventArgs e)
         {
+            if (irc != null)
+                irc.Exit();
 
             irc = new IRC();
 
@@ -32,7 +36,6 @@ namespace RoboWar
             Thread t = new Thread(startIRC);
 
             t.Start();
-
         }
 
         public void startIRC()
@@ -45,10 +48,37 @@ namespace RoboWar
             text_log.Text = message.full + "\r\n" + text_log.Text;
         }
 
+        public void UpdateStats(GameStats stats)
+        {
+            num_up.Value = stats.command_up;
+            num_down.Value = stats.command_down;
+            num_left.Value = stats.command_left;
+            num_right.Value = stats.command_right;
+            num_shoot.Value = stats.command_shoot;
+        }
+
         void irc_OnMessageParse(IRCMessage message)
         {
             UpdateControl d = new UpdateControl(UpdateMessage);
             this.Invoke(d, new object[] { this, message });
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (irc != null)
+                irc.Exit();
+        }
+
+        private void button_start_Click(object sender, EventArgs e)
+        {
+            game = new Game(irc);
+            game.stats.OnStatUpdate += stats_OnStatUpdate;
+        }
+
+        void stats_OnStatUpdate(GameStats stats)
+        {
+            UpdateStatsDel d = new UpdateStatsDel(UpdateStats);
+            this.Invoke(d, new object[] { stats });
         }
     }
 }

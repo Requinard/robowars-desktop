@@ -38,6 +38,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.text_oauth = new System.Windows.Forms.TextBox();
             this.text_log = new System.Windows.Forms.TextBox();
+            this.button_start = new System.Windows.Forms.Button();
+            this.Stats = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.num_up = new System.Windows.Forms.NumericUpDown();
+            this.num_down = new System.Windows.Forms.NumericUpDown();
+            this.num_left = new System.Windows.Forms.NumericUpDown();
+            this.num_right = new System.Windows.Forms.NumericUpDown();
+            this.num_shoot = new System.Windows.Forms.NumericUpDown();
+            this.Stats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_up)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_down)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_left)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_right)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -93,7 +111,7 @@
             // 
             // button_connect
             // 
-            this.button_connect.Location = new System.Drawing.Point(15, 127);
+            this.button_connect.Location = new System.Drawing.Point(18, 110);
             this.button_connect.Name = "button_connect";
             this.button_connect.Size = new System.Drawing.Size(152, 23);
             this.button_connect.TabIndex = 7;
@@ -128,11 +146,122 @@
             this.text_log.Size = new System.Drawing.Size(626, 241);
             this.text_log.TabIndex = 10;
             // 
+            // button_start
+            // 
+            this.button_start.Location = new System.Drawing.Point(18, 140);
+            this.button_start.Name = "button_start";
+            this.button_start.Size = new System.Drawing.Size(149, 23);
+            this.button_start.TabIndex = 11;
+            this.button_start.Text = "Start Game";
+            this.button_start.UseVisualStyleBackColor = true;
+            this.button_start.Click += new System.EventHandler(this.button_start_Click);
+            // 
+            // Stats
+            // 
+            this.Stats.Controls.Add(this.num_shoot);
+            this.Stats.Controls.Add(this.num_right);
+            this.Stats.Controls.Add(this.num_left);
+            this.Stats.Controls.Add(this.num_down);
+            this.Stats.Controls.Add(this.num_up);
+            this.Stats.Controls.Add(this.label9);
+            this.Stats.Controls.Add(this.label8);
+            this.Stats.Controls.Add(this.label7);
+            this.Stats.Controls.Add(this.label6);
+            this.Stats.Controls.Add(this.label5);
+            this.Stats.Location = new System.Drawing.Point(12, 256);
+            this.Stats.Name = "Stats";
+            this.Stats.Size = new System.Drawing.Size(200, 114);
+            this.Stats.TabIndex = 12;
+            this.Stats.TabStop = false;
+            this.Stats.Text = "groupBox1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Up";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Down";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 56);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Left";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Right";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 90);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Shoot";
+            // 
+            // num_up
+            // 
+            this.num_up.Location = new System.Drawing.Point(55, 18);
+            this.num_up.Name = "num_up";
+            this.num_up.Size = new System.Drawing.Size(120, 20);
+            this.num_up.TabIndex = 5;
+            // 
+            // num_down
+            // 
+            this.num_down.Location = new System.Drawing.Point(55, 37);
+            this.num_down.Name = "num_down";
+            this.num_down.Size = new System.Drawing.Size(120, 20);
+            this.num_down.TabIndex = 6;
+            // 
+            // num_left
+            // 
+            this.num_left.Location = new System.Drawing.Point(55, 54);
+            this.num_left.Name = "num_left";
+            this.num_left.Size = new System.Drawing.Size(120, 20);
+            this.num_left.TabIndex = 7;
+            // 
+            // num_right
+            // 
+            this.num_right.Location = new System.Drawing.Point(55, 71);
+            this.num_right.Name = "num_right";
+            this.num_right.Size = new System.Drawing.Size(120, 20);
+            this.num_right.TabIndex = 8;
+            // 
+            // num_shoot
+            // 
+            this.num_shoot.Location = new System.Drawing.Point(55, 88);
+            this.num_shoot.Name = "num_shoot";
+            this.num_shoot.Size = new System.Drawing.Size(120, 20);
+            this.num_shoot.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 262);
+            this.ClientSize = new System.Drawing.Size(812, 378);
+            this.Controls.Add(this.Stats);
+            this.Controls.Add(this.button_start);
             this.Controls.Add(this.text_log);
             this.Controls.Add(this.text_oauth);
             this.Controls.Add(this.label4);
@@ -143,8 +272,17 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Twitch Plays Robowars";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Stats.ResumeLayout(false);
+            this.Stats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_up)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_down)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_left)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_right)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,6 +300,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox text_oauth;
         private System.Windows.Forms.TextBox text_log;
+        private System.Windows.Forms.Button button_start;
+        private System.Windows.Forms.GroupBox Stats;
+        private System.Windows.Forms.NumericUpDown num_shoot;
+        private System.Windows.Forms.NumericUpDown num_right;
+        private System.Windows.Forms.NumericUpDown num_left;
+        private System.Windows.Forms.NumericUpDown num_down;
+        private System.Windows.Forms.NumericUpDown num_up;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
 

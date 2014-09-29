@@ -139,7 +139,7 @@ namespace RoboWar
             }
         }
 
-        public static void Exit()
+        public void Exit()
         {
             // we are done, lets exit
             System.Console.WriteLine("Exiting...");
