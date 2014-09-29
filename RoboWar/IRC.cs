@@ -7,9 +7,13 @@ using Meebey.SmartIrc4net;
 
 namespace RoboWar
 {
+    public delegate void NewMessage(IRCMessage message);
+
     public class IRC
     {
-        public static IrcClient irc = new IrcClient();
+        public IrcClient irc = new IrcClient();
+        public List<IRCMessage> messages = new List<IRCMessage>();
+        public event NewMessage OnMessageParse;
 
         public IRC()
         {
@@ -79,11 +83,16 @@ namespace RoboWar
         public void OnRawMessage(object sender, IrcEventArgs e)
         {
             System.Console.WriteLine("Received: " + e.Data.RawMessage);
+
+            IRCMessage mess = new IRCMessage(e.Data.RawMessage);
+
+            messages.Add(mess);
+
+            OnMessageParse(mess);
         }
 
         public void Main(string nick, string chan, int port = 6667, string server_host = "irc.twitch.tv")
         {
-            Thread.CurrentThread.Name = "Main";
             // UTF-8 test
             irc.Encoding = System.Text.Encoding.UTF8;
             // wait time between messages, we can set this lower on own irc servers
@@ -115,9 +124,17 @@ namespace RoboWar
 
                 irc.Disconnect();
             }
-            catch ( Exception e)
+            catch (ConnectionException)
             {
-                Console.WriteLine("Couldn't Connect! Reason: " + e);
+                // this exception is handled because Disconnect() can throw a not
+                // connected exception
+                Exit();
+            }
+            catch (Exception e)
+            {
+                // this should not happen by just in case we handle it nicely
+                System.Console.WriteLine("Error occurred! Message: " + e.Message);
+                System.Console.WriteLine("Exception: " + e.StackTrace);
                 Exit();
             }
         }
@@ -125,9 +142,34 @@ namespace RoboWar
         public static void Exit()
         {
             // we are done, lets exit
-            //System.Console.WriteLine("Exiting...");
-            //System.Environment.Exit(0);
+            System.Console.WriteLine("Exiting...");
+            System.Environment.Exit(0);
         }
 
+    }
+
+    public class IRCMessage
+    {
+        public string user = "";
+        public string param = "";
+        public string command = "";
+        public string body = "";
+        public string full = "";
+
+        public IRCMessage(string message)
+        {
+            full = message;
+            this.user = message.Split(' ')[0].Replace(':', ' ');
+            this.command = message.Split(' ')[1];
+            this.param = message.Split(' ')[2];
+            try
+            {
+                this.body = message.Split(':')[2];
+            }
+            catch (Exception)
+            {
+                this.body = message;
+            }
+        }
     }
 }

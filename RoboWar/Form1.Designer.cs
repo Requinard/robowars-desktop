@@ -35,6 +35,9 @@
             this.text_nick = new System.Windows.Forms.TextBox();
             this.text_chan = new System.Windows.Forms.TextBox();
             this.button_connect = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.text_oauth = new System.Windows.Forms.TextBox();
+            this.text_log = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +73,7 @@
             this.text_host.Name = "text_host";
             this.text_host.Size = new System.Drawing.Size(100, 20);
             this.text_host.TabIndex = 4;
-            this.text_host.Text = "irc.twitch.tv";
+            this.text_host.Text = "irc.freenode.com";
             // 
             // text_nick
             // 
@@ -90,19 +93,48 @@
             // 
             // button_connect
             // 
-            this.button_connect.Location = new System.Drawing.Point(15, 87);
+            this.button_connect.Location = new System.Drawing.Point(15, 127);
             this.button_connect.Name = "button_connect";
-            this.button_connect.Size = new System.Drawing.Size(160, 23);
+            this.button_connect.Size = new System.Drawing.Size(152, 23);
             this.button_connect.TabIndex = 7;
             this.button_connect.Text = "Connect";
             this.button_connect.UseVisualStyleBackColor = true;
             this.button_connect.Click += new System.EventHandler(this.button_connect_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 85);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "OAUTH";
+            // 
+            // text_oauth
+            // 
+            this.text_oauth.Location = new System.Drawing.Point(67, 84);
+            this.text_oauth.Name = "text_oauth";
+            this.text_oauth.Size = new System.Drawing.Size(100, 20);
+            this.text_oauth.TabIndex = 9;
+            this.text_oauth.Text = "oauth:ioya361ilws9p7m3ddapp4w5rwr3i11";
+            // 
+            // text_log
+            // 
+            this.text_log.Location = new System.Drawing.Point(174, 9);
+            this.text_log.Multiline = true;
+            this.text_log.Name = "text_log";
+            this.text_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.text_log.Size = new System.Drawing.Size(626, 241);
+            this.text_log.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(812, 262);
+            this.Controls.Add(this.text_log);
+            this.Controls.Add(this.text_oauth);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button_connect);
             this.Controls.Add(this.text_chan);
             this.Controls.Add(this.text_nick);
@@ -126,6 +158,9 @@
         private System.Windows.Forms.TextBox text_nick;
         private System.Windows.Forms.TextBox text_chan;
         private System.Windows.Forms.Button button_connect;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox text_oauth;
+        private System.Windows.Forms.TextBox text_log;
     }
 }
 
