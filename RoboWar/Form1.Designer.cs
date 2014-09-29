@@ -112,11 +112,11 @@
             // 
             // text_oauth
             // 
+            this.text_oauth.Enabled = false;
             this.text_oauth.Location = new System.Drawing.Point(67, 84);
             this.text_oauth.Name = "text_oauth";
             this.text_oauth.Size = new System.Drawing.Size(100, 20);
             this.text_oauth.TabIndex = 9;
-            this.text_oauth.Text = "oauth:ioya361ilws9p7m3ddapp4w5rwr3i11";
             // 
             // text_log
             // 
