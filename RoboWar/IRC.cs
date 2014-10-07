@@ -11,8 +11,8 @@ namespace RoboWar
 
     public class IRC
     {
-        public IrcClient irc = new IrcClient();
-        public List<IRCMessage> messages = new List<IRCMessage>();
+        public IrcClient Irc = new IrcClient();
+        public List<IRCMessage> Messages = new List<IRCMessage>();
         public event NewMessage OnMessageParse;
 
         public IRC()
@@ -26,16 +26,16 @@ namespace RoboWar
             {
                 // debug stuff
                 case "dump_channel":
-                    string requested_channel = e.Data.MessageArray[1];
+                    string requestedChannel = e.Data.MessageArray[1];
                     // getting the channel (via channel sync feature)
-                    Channel channel = irc.GetChannel(requested_channel);
+                    Channel channel = Irc.GetChannel(requestedChannel);
                     // here we send messages
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "<channel '" + requested_channel + "'>");
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "Name: '" + channel.Name + "'");
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "Topic: '" + channel.Topic + "'");
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "Mode: '" + channel.Mode + "'");
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "Key: '" + channel.Key + "'");
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "UserLimit: '" + channel.UserLimit + "'");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "<channel '" + requestedChannel + "'>");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "Name: '" + channel.Name + "'");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "Topic: '" + channel.Topic + "'");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "Mode: '" + channel.Mode + "'");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "Key: '" + channel.Key + "'");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "UserLimit: '" + channel.UserLimit + "'");
                     // here we go through all users of the channel and show their
                     // hashtable key and nickname
                     string nickname_list = "";
@@ -55,18 +55,18 @@ namespace RoboWar
                         }
                         nickname_list += ")" + key + " => " + channeluser.Nick + ", ";
                     }
-                    irc.SendMessage(SendType.Message, e.Data.Nick, nickname_list);
-                    irc.SendMessage(SendType.Message, e.Data.Nick, "</channel>");
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, nickname_list);
+                    Irc.SendMessage(SendType.Message, e.Data.Nick, "</channel>");
                     break;
                 case "gc":
                     GC.Collect();
                     break;
                 // typical commands
                 case "join":
-                    irc.RfcJoin(e.Data.MessageArray[1]);
+                    Irc.RfcJoin(e.Data.MessageArray[1]);
                     break;
                 case "part":
-                    irc.RfcPart(e.Data.MessageArray[1]);
+                    Irc.RfcPart(e.Data.MessageArray[1]);
                     break;
                 case "die":
                     Exit();
@@ -86,27 +86,27 @@ namespace RoboWar
 
             IRCMessage mess = new IRCMessage(e.Data.RawMessage);
 
-            messages.Add(mess);
+            Messages.Add(mess);
 
             OnMessageParse(mess);
         }
 
-        public void Main(string nick, string chan, int port = 6667, string server_host = "irc.twitch.tv")
+        public void Main(string nick, string chan, int port = 6667, string serverHost = "irc.twitch.tv")
         {
             // UTF-8 test
-            irc.Encoding = System.Text.Encoding.UTF8;
+            Irc.Encoding = System.Text.Encoding.UTF8;
             // wait time between messages, we can set this lower on own irc servers
-            irc.SendDelay = 200;
+            Irc.SendDelay = 200;
             // we use channel sync, means we can use irc.GetChannel() and so on
-            irc.ActiveChannelSyncing = true;
+            Irc.ActiveChannelSyncing = true;
 
-            irc.OnRawMessage += new IrcEventHandler(OnRawMessage);
-            irc.OnError += new ErrorEventHandler(OnError);
-            irc.OnQueryMessage += new IrcEventHandler(OnQueryMessage);
+            Irc.OnRawMessage += new IrcEventHandler(OnRawMessage);
+            Irc.OnError += new ErrorEventHandler(OnError);
+            Irc.OnQueryMessage += new IrcEventHandler(OnQueryMessage);
 
             try
             {
-                irc.Connect(server_host, port);
+                Irc.Connect(serverHost, port);
             }
             catch (ConnectionException e)
             {
@@ -116,13 +116,13 @@ namespace RoboWar
 
             try
             {
-                irc.Login(nick, nick);
+                Irc.Login(nick, nick);
 
-                irc.RfcJoin(chan);
+                Irc.RfcJoin(chan);
 
-                irc.Listen();
+                Irc.Listen();
 
-                irc.Disconnect();
+                Irc.Disconnect();
             }
             catch (ConnectionException)
             {
@@ -150,25 +150,25 @@ namespace RoboWar
 
     public class IRCMessage
     {
-        public string user = "";
-        public string param = "";
-        public string command = "";
-        public string body = "";
-        public string full = "";
+        public string User = "";
+        public string Param = "";
+        public string Command = "";
+        public string Body = "";
+        public string Full = "";
 
         public IRCMessage(string message)
         {
-            full = message;
-            this.user = message.Split(' ')[0].Replace(':', ' ');
-            this.command = message.Split(' ')[1];
-            this.param = message.Split(' ')[2];
+            Full = message;
+            this.User = message.Split(' ')[0].Replace(':', ' ');
+            this.Command = message.Split(' ')[1];
+            this.Param = message.Split(' ')[2];
             try
             {
-                this.body = message.Split(':')[2];
+                this.Body = message.Split(':')[2];
             }
             catch (Exception)
             {
-                this.body = message;
+                this.Body = message;
             }
         }
     }

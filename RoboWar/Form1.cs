@@ -40,12 +40,12 @@ namespace RoboWar
 
         public void startIRC()
         {
-            Irc.Main(text_nick.Text, text_chan.Text, server_host: text_host.Text);
+            Irc.Main(text_nick.Text, text_chan.Text, serverHost: text_host.Text);
         }
 
         public void UpdateMessage(object sender, IRCMessage message)
         {
-            text_log.Text = string.Format("{0}\r\n{1}", message.full, text_log.Text);
+            text_log.Text = string.Format("{0}\r\n{1}", message.Full, text_log.Text);
         }
 
         public void UpdateStats(GameStats stats)

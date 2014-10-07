@@ -54,7 +54,7 @@ namespace RoboWar
         {
             foreach (string comm in Commands)
 	        {
-		        if(message.body.Contains(comm))
+		        if(message.Body.Contains(comm))
                 {
                     Stats.AddStat(comm);
                 }
