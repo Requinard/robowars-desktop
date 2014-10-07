@@ -8,18 +8,16 @@ namespace RoboWar
 {
     public class Game
     {
-        public List<string> Commands = new List<string>()
-        {
-            "up",
-            "down",
-            "left",
-            "right",
-            "shoot",
-            "koen"
-        };
+        public List<string> Commands;
 
-        public GameStats stats { get; private set; }
-        private IRC irc;
+        public GameStats Stats { get; private set; }
+
+        public IRC Irc
+        {
+            get { return _irc; }
+        }
+
+        private IRC _irc;
 
         /// <summary>
         /// Sets up game status
@@ -27,15 +25,24 @@ namespace RoboWar
         /// <param name="irc">IRC object that commands will come from</param>
         public Game(IRC irc)
         {
+            Commands = new List<string>()
+            {
+                "up",
+                "down",
+                "left",
+                "right",
+                "shoot",
+                "koen"
+            };
             Console.WriteLine("Initializing Game");
 
-            this.irc = irc;
+            this._irc = irc;
             Console.WriteLine("Got IRC");
 
             irc.OnMessageParse += irc_OnMessageParse;
             Console.WriteLine("Added Message Parsing Method");
 
-            stats = new GameStats();
+            Stats = new GameStats();
             Console.WriteLine("Initialized GameStats");
         }
 
@@ -49,7 +56,7 @@ namespace RoboWar
 	        {
 		        if(message.body.Contains(comm))
                 {
-                    stats.AddStat(comm);
+                    Stats.AddStat(comm);
                 }
 	        }
         }
@@ -61,11 +68,11 @@ namespace RoboWar
         public delegate void GameStatsUpdated(GameStats stats);
         public event GameStatsUpdated OnStatUpdate;
 
-        public int command_up = 0;
-        public int command_down = 0;
-        public int command_left = 0;
-        public int command_right = 0;
-        public int command_shoot = 0;
+        public int CommandUp = 0;
+        public int CommandDown = 0;
+        public int CommandLeft = 0;
+        public int CommandRight = 0;
+        public int CommandShoot = 0;
 
         /// <summary>
         /// Initializes gamestat object
@@ -84,19 +91,19 @@ namespace RoboWar
             switch(comm)
             {
                 case "up":
-                    command_up++;
+                    CommandUp++;
                     break;
                 case "down":
-                    command_down++;
+                    CommandDown++;
                     break;
                 case "left":
-                    command_left++;
+                    CommandLeft++;
                     break;
                 case "right":
-                    command_right++;
+                    CommandRight++;
                     break;
                 case "shoot":
-                    command_shoot++;
+                    CommandShoot++;
                     break;
                 default:
                     break;

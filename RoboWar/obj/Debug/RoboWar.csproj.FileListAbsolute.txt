@@ -10,3 +10,6 @@ c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\bin
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.exe
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.pdb
 c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj\Debug\RoboWar.csprojResolveAssemblyReference.cache
+C:\Users\David\Source\Repos\robowar-desktop\RoboWar\bin\Debug\RoboWar.exe.config
+C:\Users\David\Source\Repos\robowar-desktop\RoboWar\obj\Debug\RoboWar.exe
+C:\Users\David\Source\Repos\robowar-desktop\RoboWar\obj\Debug\RoboWar.pdb

@@ -16,8 +16,8 @@ namespace RoboWar
 
         public delegate void UpdateControl(object sender, IRCMessage message);
         public delegate void UpdateStatsDel(GameStats stats);
-        public IRC irc;
-        public Game game;
+        public IRC Irc;
+        public Game Game;
 
         public Form1()
         {
@@ -26,12 +26,12 @@ namespace RoboWar
 
         private void button_connect_Click(object sender, EventArgs e)
         {
-            if (irc != null)
-                irc.Exit();
+            if (Irc != null)
+                Irc.Exit();
 
-            irc = new IRC();
+            Irc = new IRC();
 
-            irc.OnMessageParse +=irc_OnMessageParse;
+            Irc.OnMessageParse +=irc_OnMessageParse;
 
             Thread t = new Thread(startIRC);
 
@@ -40,21 +40,21 @@ namespace RoboWar
 
         public void startIRC()
         {
-            irc.Main(text_nick.Text, text_chan.Text, server_host: text_host.Text);
+            Irc.Main(text_nick.Text, text_chan.Text, server_host: text_host.Text);
         }
 
         public void UpdateMessage(object sender, IRCMessage message)
         {
-            text_log.Text = message.full + "\r\n" + text_log.Text;
+            text_log.Text = string.Format("{0}\r\n{1}", message.full, text_log.Text);
         }
 
         public void UpdateStats(GameStats stats)
         {
-            num_up.Value = stats.command_up;
-            num_down.Value = stats.command_down;
-            num_left.Value = stats.command_left;
-            num_right.Value = stats.command_right;
-            num_shoot.Value = stats.command_shoot;
+            num_up.Value = stats.CommandUp;
+            num_down.Value = stats.CommandDown;
+            num_left.Value = stats.CommandLeft;
+            num_right.Value = stats.CommandRight;
+            num_shoot.Value = stats.CommandShoot;
         }
 
         void irc_OnMessageParse(IRCMessage message)
@@ -65,14 +65,14 @@ namespace RoboWar
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (irc != null)
-                irc.Exit();
+            if (Irc != null)
+                Irc.Exit();
         }
 
         private void button_start_Click(object sender, EventArgs e)
         {
-            game = new Game(irc);
-            game.stats.OnStatUpdate += stats_OnStatUpdate;
+            Game = new Game(Irc);
+            Game.Stats.OnStatUpdate += stats_OnStatUpdate;
         }
 
         void stats_OnStatUpdate(GameStats stats)
