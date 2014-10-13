@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,22 +41,28 @@
             this.text_log = new System.Windows.Forms.TextBox();
             this.button_start = new System.Windows.Forms.Button();
             this.Stats = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.num_up = new System.Windows.Forms.NumericUpDown();
-            this.num_down = new System.Windows.Forms.NumericUpDown();
-            this.num_left = new System.Windows.Forms.NumericUpDown();
-            this.num_right = new System.Windows.Forms.NumericUpDown();
             this.num_shoot = new System.Windows.Forms.NumericUpDown();
+            this.num_right = new System.Windows.Forms.NumericUpDown();
+            this.num_left = new System.Windows.Forms.NumericUpDown();
+            this.num_down = new System.Windows.Forms.NumericUpDown();
+            this.num_up = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.combo_com_ports = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.Stats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_up)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_down)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_left)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_right)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_right)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_left)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_down)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_up)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -175,41 +182,40 @@
             this.Stats.TabStop = false;
             this.Stats.Text = "groupBox1";
             // 
-            // label5
+            // num_shoot
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Up";
+            this.num_shoot.Location = new System.Drawing.Point(55, 88);
+            this.num_shoot.Name = "num_shoot";
+            this.num_shoot.Size = new System.Drawing.Size(120, 20);
+            this.num_shoot.TabIndex = 9;
             // 
-            // label6
+            // num_right
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 39);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Down";
+            this.num_right.Location = new System.Drawing.Point(55, 71);
+            this.num_right.Name = "num_right";
+            this.num_right.Size = new System.Drawing.Size(120, 20);
+            this.num_right.TabIndex = 8;
             // 
-            // label7
+            // num_left
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 56);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Left";
+            this.num_left.Location = new System.Drawing.Point(55, 54);
+            this.num_left.Name = "num_left";
+            this.num_left.Size = new System.Drawing.Size(120, 20);
+            this.num_left.TabIndex = 7;
             // 
-            // label8
+            // num_down
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 73);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Right";
+            this.num_down.Location = new System.Drawing.Point(55, 37);
+            this.num_down.Name = "num_down";
+            this.num_down.Size = new System.Drawing.Size(120, 20);
+            this.num_down.TabIndex = 6;
+            // 
+            // num_up
+            // 
+            this.num_up.Location = new System.Drawing.Point(55, 18);
+            this.num_up.Name = "num_up";
+            this.num_up.Size = new System.Drawing.Size(120, 20);
+            this.num_up.TabIndex = 5;
             // 
             // label9
             // 
@@ -220,46 +226,91 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Shoot";
             // 
-            // num_up
+            // label8
             // 
-            this.num_up.Location = new System.Drawing.Point(55, 18);
-            this.num_up.Name = "num_up";
-            this.num_up.Size = new System.Drawing.Size(120, 20);
-            this.num_up.TabIndex = 5;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Right";
             // 
-            // num_down
+            // label7
             // 
-            this.num_down.Location = new System.Drawing.Point(55, 37);
-            this.num_down.Name = "num_down";
-            this.num_down.Size = new System.Drawing.Size(120, 20);
-            this.num_down.TabIndex = 6;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 56);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Left";
             // 
-            // num_left
+            // label6
             // 
-            this.num_left.Location = new System.Drawing.Point(55, 54);
-            this.num_left.Name = "num_left";
-            this.num_left.Size = new System.Drawing.Size(120, 20);
-            this.num_left.TabIndex = 7;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Down";
             // 
-            // num_right
+            // label5
             // 
-            this.num_right.Location = new System.Drawing.Point(55, 71);
-            this.num_right.Name = "num_right";
-            this.num_right.Size = new System.Drawing.Size(120, 20);
-            this.num_right.TabIndex = 8;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Up";
             // 
-            // num_shoot
+            // groupBox1
             // 
-            this.num_shoot.Location = new System.Drawing.Point(55, 88);
-            this.num_shoot.Name = "num_shoot";
-            this.num_shoot.Size = new System.Drawing.Size(120, 20);
-            this.num_shoot.TabIndex = 9;
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.combo_com_ports);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Location = new System.Drawing.Point(219, 257);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "COM";
+            // 
+            // combo_com_ports
+            // 
+            this.combo_com_ports.FormattingEnabled = true;
+            this.combo_com_ports.Location = new System.Drawing.Point(55, 17);
+            this.combo_com_ports.Name = "combo_com_ports";
+            this.combo_com_ports.Size = new System.Drawing.Size(139, 21);
+            this.combo_com_ports.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 44);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 378);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Stats);
             this.Controls.Add(this.button_start);
             this.Controls.Add(this.text_log);
@@ -276,13 +327,16 @@
             this.Name = "Form1";
             this.Text = "Twitch Plays Robowars";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Stats.ResumeLayout(false);
             this.Stats.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_up)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_down)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_left)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_right)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_right)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_left)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_down)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_up)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,6 +366,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox combo_com_ports;
+        private System.Windows.Forms.Label label10;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 

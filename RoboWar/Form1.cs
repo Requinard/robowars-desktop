@@ -80,5 +80,38 @@ namespace RoboWar
             UpdateStatsDel d = new UpdateStatsDel(UpdateStats);
             this.Invoke(d, new object[] { stats });
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            foreach (string item in System.IO.Ports.SerialPort.GetPortNames())
+            {
+                combo_com_ports.Items.Add(item);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serialPort1 = new System.IO.Ports.SerialPort();
+
+                serialPort1.PortName = combo_com_ports.SelectedText;
+
+                serialPort1.Open();
+
+                serialPort1.WriteTimeout = 1500;
+
+                serialPort1.Open();
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            Console.WriteLine(serialPort1.ReadLine());
+        }
     }
 }

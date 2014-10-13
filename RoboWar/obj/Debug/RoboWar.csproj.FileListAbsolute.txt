@@ -13,3 +13,6 @@ c:\users\systeembeheer\documents\visual studio 2012\Projects\RoboWar\RoboWar\obj
 C:\Users\David\Source\Repos\robowar-desktop\RoboWar\bin\Debug\RoboWar.exe.config
 C:\Users\David\Source\Repos\robowar-desktop\RoboWar\obj\Debug\RoboWar.exe
 C:\Users\David\Source\Repos\robowar-desktop\RoboWar\obj\Debug\RoboWar.pdb
+C:\Users\Systeembeheer\Documents\Visual Studio 2012\Projects\robowars-desktop\RoboWar\bin\Debug\RoboWar.exe.config
+C:\Users\Systeembeheer\Documents\Visual Studio 2012\Projects\robowars-desktop\RoboWar\obj\Debug\RoboWar.exe
+C:\Users\Systeembeheer\Documents\Visual Studio 2012\Projects\robowars-desktop\RoboWar\obj\Debug\RoboWar.pdb
