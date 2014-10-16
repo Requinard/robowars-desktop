@@ -16,7 +16,7 @@ namespace RoboWar
 
         public delegate void UpdateControl(object sender, IRCMessage message);
         public delegate void UpdateStatsDel(GameStats stats);
-        public Irc Irc;
+        public IRC Irc;
         public Game Game;
 
         public Form1()
@@ -29,7 +29,7 @@ namespace RoboWar
             if (Irc != null)
                 Irc.Exit();
 
-            Irc = new Irc();
+            Irc = new IRC();
 
             Irc.OnMessageParse +=irc_OnMessageParse;
 

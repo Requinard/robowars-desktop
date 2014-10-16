@@ -23,3 +23,8 @@ C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.csprojResolve
 C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.Form1.resources
 C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.Properties.Resources.resources
 C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.csproj.GenerateResource.Cache
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\RoboWar.exe
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\RoboWar.pdb
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\SmarIrc4net.dll
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\SmarIrc4net.pdb
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\SmarIrc4net.xml
