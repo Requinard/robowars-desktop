@@ -9,13 +9,13 @@ namespace RoboWar
 {
     public delegate void NewMessage(IRCMessage message);
 
-    public class Irc
+    public class IRC
     {
         public IrcClient Irc = new IrcClient();
         public List<IRCMessage> Messages = new List<IRCMessage>();
         public event NewMessage OnMessageParse;
 
-        public Irc()
+        public IRC()
         {
             Console.WriteLine("Init");
         }
