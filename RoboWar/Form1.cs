@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
-using EV3
 
 namespace RoboWar
 {
@@ -17,7 +16,7 @@ namespace RoboWar
 
         public delegate void UpdateControl(object sender, IRCMessage message);
         public delegate void UpdateStatsDel(GameStats stats);
-        public IRC Irc;
+        public Irc Irc;
         public Game Game;
 
         public Form1()
@@ -30,7 +29,7 @@ namespace RoboWar
             if (Irc != null)
                 Irc.Exit();
 
-            Irc = new IRC();
+            Irc = new Irc();
 
             Irc.OnMessageParse +=irc_OnMessageParse;
 

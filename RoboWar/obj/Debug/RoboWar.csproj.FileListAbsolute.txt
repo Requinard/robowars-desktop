@@ -16,3 +16,10 @@ C:\Users\David\Source\Repos\robowar-desktop\RoboWar\obj\Debug\RoboWar.pdb
 C:\Users\Systeembeheer\Documents\Visual Studio 2012\Projects\robowars-desktop\RoboWar\bin\Debug\RoboWar.exe.config
 C:\Users\Systeembeheer\Documents\Visual Studio 2012\Projects\robowars-desktop\RoboWar\obj\Debug\RoboWar.exe
 C:\Users\Systeembeheer\Documents\Visual Studio 2012\Projects\robowars-desktop\RoboWar\obj\Debug\RoboWar.pdb
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\RoboWar.exe.config
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.exe
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.pdb
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.csprojResolveAssemblyReference.cache
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.Form1.resources
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.Properties.Resources.resources
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\obj\Debug\RoboWar.csproj.GenerateResource.Cache

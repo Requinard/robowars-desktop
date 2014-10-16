@@ -12,18 +12,18 @@ namespace RoboWar
 
         public GameStats Stats { get; private set; }
 
-        public IRC Irc
+        public Irc Irc
         {
             get { return _irc; }
         }
 
-        private IRC _irc;
+        private Irc _irc;
 
         /// <summary>
         /// Sets up game status
         /// </summary>
         /// <param name="irc">IRC object that commands will come from</param>
-        public Game(IRC irc)
+        public Game(Irc irc)
         {
             Commands = new List<string>()
             {
