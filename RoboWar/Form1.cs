@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -33,12 +26,13 @@ namespace RoboWar
 
             Irc.OnMessageParse +=irc_OnMessageParse;
 
-            Thread t = new Thread(startIRC);
+// ReSharper disable once SuggestUseVarKeywordEvident
+            Thread t = new Thread(StartIrc);
 
             t.Start();
         }
 
-        public void startIRC()
+        public void StartIrc()
         {
             Irc.Main(text_nick.Text, text_chan.Text, serverHost: text_host.Text);
         }
@@ -59,8 +53,8 @@ namespace RoboWar
 
         void irc_OnMessageParse(IRCMessage message)
         {
-            UpdateControl d = new UpdateControl(UpdateMessage);
-            this.Invoke(d, new object[] { this, message });
+            UpdateControl d = UpdateMessage;
+            Invoke(d, new object[] { this, message });
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,8 +71,8 @@ namespace RoboWar
 
         void stats_OnStatUpdate(GameStats stats)
         {
-            UpdateStatsDel d = new UpdateStatsDel(UpdateStats);
-            this.Invoke(d, new object[] { stats });
+            var d = new UpdateStatsDel(UpdateStats);
+            Invoke(d, new object[] { stats });
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -93,9 +87,7 @@ namespace RoboWar
         {
             try
             {
-                serialPort1 = new System.IO.Ports.SerialPort();
-
-                serialPort1.PortName = combo_com_ports.SelectedText;
+                serialPort1 = new System.IO.Ports.SerialPort {PortName = combo_com_ports.SelectedText};
 
                 serialPort1.Open();
 

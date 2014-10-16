@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,11 +16,12 @@ namespace RoboWar
 
         public IRC()
         {
-            Console.WriteLine("Init");
+            Console.WriteLine(@"Init");
         }
 
         public void OnQueryMessage(object sender, IrcEventArgs e)
         {
+            string nickname_list = "";
             switch (e.Data.MessageArray[0])
             {
                 // debug stuff
@@ -38,7 +38,6 @@ namespace RoboWar
                     Irc.SendMessage(SendType.Message, e.Data.Nick, "UserLimit: '" + channel.UserLimit + "'");
                     // here we go through all users of the channel and show their
                     // hashtable key and nickname
-                    string nickname_list = "";
                     nickname_list += "Users: ";
                     foreach (DictionaryEntry de in channel.Users)
                     {
@@ -76,13 +75,13 @@ namespace RoboWar
 
         public void OnError(object sender, ErrorEventArgs e)
         {
-            System.Console.WriteLine("Error: " + e.ErrorMessage);
+            Console.WriteLine("Error: {0}", e.ErrorMessage);
             Exit();
         }
 
         public void OnRawMessage(object sender, IrcEventArgs e)
         {
-            System.Console.WriteLine("Received: " + e.Data.RawMessage);
+            Console.WriteLine("Received: {0}", e.Data.RawMessage);
 
             IRCMessage mess = new IRCMessage(e.Data.RawMessage);
 
@@ -100,8 +99,8 @@ namespace RoboWar
             // we use channel sync, means we can use irc.GetChannel() and so on
             Irc.ActiveChannelSyncing = true;
 
-            Irc.OnRawMessage += new IrcEventHandler(OnRawMessage);
-            Irc.OnError += new ErrorEventHandler(OnError);
+            Irc.OnRawMessage += OnRawMessage;
+            Irc.OnError += OnError;
             Irc.OnQueryMessage += new IrcEventHandler(OnQueryMessage);
 
             try
@@ -110,7 +109,7 @@ namespace RoboWar
             }
             catch (ConnectionException e)
             {
-                Console.WriteLine("Couldn't Connect! Reason: " + e);
+                Console.WriteLine("Couldn't Connect! Reason: {0}", e);
                 Exit();
             }
 
@@ -133,8 +132,8 @@ namespace RoboWar
             catch (Exception e)
             {
                 // this should not happen by just in case we handle it nicely
-                System.Console.WriteLine("Error occurred! Message: " + e.Message);
-                System.Console.WriteLine("Exception: " + e.StackTrace);
+                Console.WriteLine("Error occurred! Message: {0}", e.Message);
+                Console.WriteLine("Exception: {0}", e.StackTrace);
                 Exit();
             }
         }
@@ -142,12 +141,13 @@ namespace RoboWar
         public void Exit()
         {
             // we are done, lets exit
-            System.Console.WriteLine("Exiting...");
-            System.Environment.Exit(0);
+            Console.WriteLine("Exiting...");
+            Environment.Exit(0);
         }
 
     }
 
+// ReSharper disable once InconsistentNaming
     public class IRCMessage
     {
         public string User = "";
@@ -159,16 +159,16 @@ namespace RoboWar
         public IRCMessage(string message)
         {
             Full = message;
-            this.User = message.Split(' ')[0].Replace(':', ' ');
-            this.Command = message.Split(' ')[1];
+            User = message.Split(' ')[0].Replace(':', ' ');
+            Command = message.Split(' ')[1];
             this.Param = message.Split(' ')[2];
             try
             {
-                this.Body = message.Split(':')[2];
+                Body = message.Split(':')[2];
             }
             catch (Exception)
             {
-                this.Body = message;
+                Body = message;
             }
         }
     }
