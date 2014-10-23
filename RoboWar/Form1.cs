@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -15,6 +16,11 @@ namespace RoboWar
         public Form1()
         {
             InitializeComponent();
+
+            foreach (string port in SerialPort.GetPortNames())
+            {
+                combo_com_ports.Items.Add(port);
+            }
         }
 
         private void button_connect_Click(object sender, EventArgs e)

@@ -118,8 +118,18 @@ namespace RoboWar
                 Irc.Login(nick, nick);
 
                 Irc.RfcJoin(chan);
-
-                Irc.Listen();
+                while (true)
+                {
+                    try
+                    {
+                        Irc.Listen();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                }
+                
 
                 Irc.Disconnect();
             }
@@ -132,8 +142,8 @@ namespace RoboWar
             catch (Exception e)
             {
                 // this should not happen by just in case we handle it nicely
-                Console.WriteLine("Error occurred! Message: {0}", e.Message);
-                Console.WriteLine("Exception: {0}", e.StackTrace);
+                Console.WriteLine(@"Error occurred! Message: {0}", e.Message);
+                Console.WriteLine(@"Exception: {0}", e.StackTrace);
                 Exit();
             }
         }
@@ -141,7 +151,7 @@ namespace RoboWar
         public void Exit()
         {
             // we are done, lets exit
-            Console.WriteLine("Exiting...");
+            Console.WriteLine(@"Exiting...");
             Environment.Exit(0);
         }
 
@@ -161,7 +171,7 @@ namespace RoboWar
             Full = message;
             User = message.Split(' ')[0].Replace(':', ' ');
             Command = message.Split(' ')[1];
-            this.Param = message.Split(' ')[2];
+            Param = message.Split(' ')[2];
             try
             {
                 Body = message.Split(':')[2];
