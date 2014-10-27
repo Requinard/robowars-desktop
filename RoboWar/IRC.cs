@@ -79,6 +79,11 @@ namespace RoboWar
             Exit();
         }
 
+        public void SendMessage(string message, string chan)
+        {
+            Irc.SendMessage(SendType.Message,chan, message);
+        }
+
         public void OnRawMessage(object sender, IrcEventArgs e)
         {
             Console.WriteLine("Received: {0}", e.Data.RawMessage);
@@ -118,6 +123,8 @@ namespace RoboWar
                 Irc.Login(nick, nick);
 
                 Irc.RfcJoin(chan);
+
+                Irc.SendMessage(SendType.Message, chan,"Hi guys, Welcome to TwitchWars!");
                 while (true)
                 {
                     try

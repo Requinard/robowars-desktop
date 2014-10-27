@@ -23,7 +23,7 @@ namespace RoboWar
             {
                 combo_com_ports.Items.Add(port);
             }
-
+            timer1.Interval = (int)numericDelayForCommand.Value;
             timer1.Tick += timer1_Tick;
         }
 
@@ -138,6 +138,16 @@ namespace RoboWar
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             Console.WriteLine(serialPort1.ReadLine());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Game.Stats.GetPopularCommand();
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            Robot.SendMessage("Control", Game.Stats.GetPopularCommand());
         }
     }
 }

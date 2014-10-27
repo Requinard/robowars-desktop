@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Meebey.SmartIrc4net;
 
 namespace RoboWar
 {
@@ -42,8 +44,11 @@ namespace RoboWar
             irc.OnMessageParse += irc_OnMessageParse;
             Console.WriteLine("Added Message Parsing Method");
 
-            Stats = new GameStats();
+            Stats = new GameStats(this.Commands);
             Console.WriteLine("Initialized GameStats");
+
+            //TODO: fix channel
+            this._irc.SendMessage("The game is on!", "#twitchwars1");
         }
 
         /// <summary>
@@ -74,12 +79,23 @@ namespace RoboWar
         public int CommandRight = 0;
         public int CommandShoot = 0;
 
+        public Dictionary<string, int> Commands = new Dictionary<string, int>();
+
+        public List<string> CommandList;
+
         /// <summary>
         /// Initializes gamestat object
         /// </summary>
-        public GameStats()
+        public GameStats(List<string> commands )
         {
             Console.WriteLine("Init Gamestats");
+
+            CommandList = commands;
+
+            foreach (string command in commands)
+            {
+                Commands[command] = 0;
+            }
         }
 
         /// <summary>
@@ -92,24 +108,48 @@ namespace RoboWar
             {
                 case "up":
                     ++CommandUp;
+                    ++Commands[comm];
                     break;
                 case "down":
                     ++CommandDown;
+                    ++Commands[comm];
                     break;
                 case "left":
                     ++CommandLeft;
+                    ++Commands[comm];
                     break;
                 case "right":
                     ++CommandRight;
+                    ++Commands[comm];
                     break;
                 case "shoot":
                     ++CommandShoot;
+                    ++Commands[comm];
                     break;
                 default:
                     break;
             }
             if (OnStatUpdate != null)
                 OnStatUpdate(this);
+        }
+
+        public int GetPopularCommand()
+        {
+            int val = Commands.Values.Max();
+
+            string command_end = "";
+
+            foreach (string command in Commands.Keys)
+            {
+                if (Commands[command] == val)
+                {
+                    command_end = command;
+                    break;
+                }
+            }
+
+            int commandNumber = CommandList.IndexOf(command_end);
+            return commandNumber;
         }
     }
 }
