@@ -52,10 +52,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.combo_com_ports = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.combo_com_ports = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.numericDelayForCommand = new System.Windows.Forms.NumericUpDown();
             this.Stats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_right)).BeginInit();
@@ -63,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_down)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_up)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDelayForCommand)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -274,23 +277,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 20);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "COM";
-            // 
-            // combo_com_ports
-            // 
-            this.combo_com_ports.FormattingEnabled = true;
-            this.combo_com_ports.Location = new System.Drawing.Point(55, 17);
-            this.combo_com_ports.Name = "combo_com_ports";
-            this.combo_com_ports.Size = new System.Drawing.Size(139, 21);
-            this.combo_com_ports.TabIndex = 1;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(6, 44);
@@ -301,15 +287,55 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // combo_com_ports
+            // 
+            this.combo_com_ports.FormattingEnabled = true;
+            this.combo_com_ports.Location = new System.Drawing.Point(55, 17);
+            this.combo_com_ports.Name = "combo_com_ports";
+            this.combo_com_ports.Size = new System.Drawing.Size(139, 21);
+            this.combo_com_ports.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "COM";
+            // 
             // serialPort1
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
+            // numericDelayForCommand
+            // 
+            this.numericDelayForCommand.Location = new System.Drawing.Point(426, 268);
+            this.numericDelayForCommand.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericDelayForCommand.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericDelayForCommand.Name = "numericDelayForCommand";
+            this.numericDelayForCommand.Size = new System.Drawing.Size(120, 20);
+            this.numericDelayForCommand.TabIndex = 14;
+            this.numericDelayForCommand.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 378);
+            this.Controls.Add(this.numericDelayForCommand);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Stats);
             this.Controls.Add(this.button_start);
@@ -337,6 +363,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_up)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDelayForCommand)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,6 +398,8 @@
         private System.Windows.Forms.ComboBox combo_com_ports;
         private System.Windows.Forms.Label label10;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.NumericUpDown numericDelayForCommand;
     }
 }
 

@@ -91,19 +91,19 @@ namespace RoboWar
             switch(comm)
             {
                 case "up":
-                    CommandUp++;
+                    ++CommandUp;
                     break;
                 case "down":
-                    CommandDown++;
+                    ++CommandDown;
                     break;
                 case "left":
-                    CommandLeft++;
+                    ++CommandLeft;
                     break;
                 case "right":
-                    CommandRight++;
+                    ++CommandRight;
                     break;
                 case "shoot":
-                    CommandShoot++;
+                    ++CommandShoot;
                     break;
                 default:
                     break;
