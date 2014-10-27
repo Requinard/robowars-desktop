@@ -28,3 +28,6 @@ C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\RoboWar.pdb
 C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\SmarIrc4net.dll
 C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\SmarIrc4net.pdb
 C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\SmarIrc4net.xml
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\EV3MessengerLib.dll
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\EV3MessengerLib.pdb
+C:\Users\Davi\projecten\robowars-dekstop\RoboWar\bin\Debug\EV3MessengerLib.xml

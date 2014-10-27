@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms;
+using EV3MessengerLib;
 
 namespace RoboWar
 {
@@ -12,6 +13,7 @@ namespace RoboWar
         public delegate void UpdateStatsDel(GameStats stats);
         public IRC Irc;
         public Game Game;
+        public EV3Messenger robot;
 
         public Form1()
         {
@@ -32,7 +34,7 @@ namespace RoboWar
 
             Irc.OnMessageParse +=irc_OnMessageParse;
 
-// ReSharper disable once SuggestUseVarKeywordEvident
+            // ReSharper disable once SuggestUseVarKeywordEvident
             Thread t = new Thread(StartIrc);
 
             t.Start();
@@ -67,6 +69,9 @@ namespace RoboWar
         {
             if (Irc != null)
                 Irc.Exit();
+
+            if (robot != null)
+                robot.Disconnect();
         }
 
         private void button_start_Click(object sender, EventArgs e)
@@ -93,13 +98,9 @@ namespace RoboWar
         {
             try
             {
-                serialPort1 = new System.IO.Ports.SerialPort {PortName = combo_com_ports.SelectedText};
+                robot = new EV3Messenger();
+                robot.Connect(combo_com_ports.Text);
 
-                serialPort1.Open();
-
-                serialPort1.WriteTimeout = 1500;
-
-                serialPort1.Open();
             }
             catch (NullReferenceException ex)
             {

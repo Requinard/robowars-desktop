@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EV3MessengerLib">
+      <HintPath>..\..\..\..\..\Program Files (x86)\EV3Messenger\EV3MessengerLib.dll</HintPath>
+    </Reference>
     <Reference Include="SmarIrc4net">
       <HintPath>..\packages\SmartIrc4net.0.4.5.1\lib\net40\SmarIrc4net.dll</HintPath>
     </Reference>
