@@ -154,19 +154,30 @@ namespace RoboWar
         public int GetPopularCommand()
         {
             int val = Commands.Values.Max();
-
             string command_end = "";
+            bool allAreNull = true;
 
             foreach (string command in Commands.Keys)
             {
+                if (Commands[command] > 0)
+                    allAreNull = false;
+                    
                 if (Commands[command] == val)
                 {
                     command_end = command;
                     break;
                 }
             }
-
             int commandNumber = CommandList.IndexOf(command_end);
+
+            if (allAreNull)
+            {
+                Random rand = new Random();
+                commandNumber = rand.Next(0, CommandList.Count);
+            }
+
+            clearCommandList();
+
             return commandNumber;
         }
     }

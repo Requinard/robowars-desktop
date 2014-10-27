@@ -101,10 +101,21 @@ namespace RoboWar
 
         private void button_start_Click(object sender, EventArgs e)
         {
-            Game = new Game(Irc);
-            Game.Stats.OnStatUpdate += stats_OnStatUpdate;
+            if (Game == null)
+            {
+                button_start.Text = "Stop the game";
+                Game = new Game(Irc);
+                Game.Stats.OnStatUpdate += stats_OnStatUpdate;
 
-            timer1.Start();
+                timer1.Start();
+            }
+            else
+            {
+                timer1.Stop();
+                Game = null;
+                button_start.Text = "Start the game";
+            }
+
         }
 
         void stats_OnStatUpdate(GameStats stats)
