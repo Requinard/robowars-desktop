@@ -72,6 +72,7 @@ namespace RoboWar
     {
         public delegate void GameStatsUpdated(GameStats stats);
         public event GameStatsUpdated OnStatUpdate;
+        private bool hanglock = false;
 
         public int CommandUp = 0;
         public int CommandDown = 0;
@@ -82,6 +83,20 @@ namespace RoboWar
         public Dictionary<string, int> Commands = new Dictionary<string, int>();
 
         public List<string> CommandList;
+
+        private void clearCommandList()
+        {
+            hanglock = true;
+
+            Commands = new Dictionary<string, int>();
+
+            foreach (string comm in CommandList)
+            {
+                Commands[comm] = 0;
+            }
+
+            hanglock = false;
+        }
 
         /// <summary>
         /// Initializes gamestat object
@@ -104,6 +119,9 @@ namespace RoboWar
         /// <param name="comm"></param>
         public void AddStat(string comm)
         {
+            if(hanglock)
+                return;
+
             switch(comm)
             {
                 case "up":
