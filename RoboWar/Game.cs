@@ -177,8 +177,6 @@ namespace RoboWar
                 return 100;
             }
 
-           
-
             return commandNumber;
         }
     }
