@@ -170,13 +170,14 @@ namespace RoboWar
             }
             int commandNumber = CommandList.IndexOf(command_end);
 
+            clearCommandList();
+
             if (allAreNull)
             {
-                Random rand = new Random();
-                commandNumber = rand.Next(0, CommandList.Count);
+                return 100;
             }
 
-            clearCommandList();
+           
 
             return commandNumber;
         }

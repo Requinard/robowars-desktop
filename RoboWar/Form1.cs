@@ -158,7 +158,10 @@ namespace RoboWar
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            Robot.SendMessage("Control", Game.Stats.GetPopularCommand());
+            int command = Game.Stats.GetPopularCommand();
+
+            if(command != 100)
+                Robot.SendMessage("Control", command);
         }
     }
 }
