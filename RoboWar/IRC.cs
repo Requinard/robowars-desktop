@@ -19,6 +19,11 @@ namespace RoboWar
             Console.WriteLine(@"Init");
         }
 
+        /// <summary>
+        /// Handles special Query Messages
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnQueryMessage(object sender, IrcEventArgs e)
         {
             string nickname_list = "";
@@ -73,17 +78,32 @@ namespace RoboWar
             }
         }
 
+        /// <summary>
+        /// Handles errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnError(object sender, ErrorEventArgs e)
         {
             Console.WriteLine("Error: {0}", e.ErrorMessage);
             Exit();
         }
 
+        /// <summary>
+        /// Sends a message over IRC
+        /// </summary>
+        /// <param name="message">Contents of the message</param>
+        /// <param name="chan">Channel you'll be sending it to</param>
         public void SendMessage(string message, string chan)
         {
             Irc.SendMessage(SendType.Message,chan, message);
         }
 
+        /// <summary>
+        /// Handle regular messages
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnRawMessage(object sender, IrcEventArgs e)
         {
             Console.WriteLine("Received: {0}", e.Data.RawMessage);
@@ -94,7 +114,13 @@ namespace RoboWar
 
             OnMessageParse(mess);
         }
-
+        /// <summary>
+        /// Initialize all IRC work
+        /// </summary>
+        /// <param name="nick">the nickname you want</param>
+        /// <param name="chan">Channel you want to join</param>
+        /// <param name="port">Port to connect on</param>
+        /// <param name="serverHost">Hostname of the server to connect to. IPs are allowed</param>
         public void Main(string nick, string chan, int port = 6667, string serverHost = "irc.twitch.tv")
         {
             // UTF-8 test
@@ -173,6 +199,10 @@ namespace RoboWar
         public string Body = "";
         public string Full = "";
 
+        /// <summary>
+        /// Parse a message as an IRC message object
+        /// </summary>
+        /// <param name="message"></param>
         public IRCMessage(string message)
         {
             Full = message;
