@@ -15,6 +15,9 @@ namespace RoboWar
         public Game Game;
         public EV3Messenger Robot;
 
+        /// <summary>
+        /// Initialize the form
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -84,12 +87,21 @@ namespace RoboWar
             num_shoot.Value = stats.CommandShoot;
         }
 
+        /// <summary>
+        /// Invokes a message update
+        /// </summary>
+        /// <param name="message"></param>
         void irc_OnMessageParse(IRCMessage message)
         {
             UpdateControl d = UpdateMessage;
             Invoke(d, new object[] { this, message });
         }
 
+        /// <summary>
+        /// Disconnect from IRC and Robot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Irc != null)
@@ -99,6 +111,11 @@ namespace RoboWar
                 Robot.Disconnect();
         }
 
+        /// <summary>
+        /// Start the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_start_Click(object sender, EventArgs e)
         {
             if (Game == null)
@@ -117,13 +134,21 @@ namespace RoboWar
             }
 
         }
-
+        /// <summary>
+        /// Update stats of on the form
+        /// </summary>
+        /// <param name="stats"></param>
         void stats_OnStatUpdate(GameStats stats)
         {
             var d = new UpdateStatsDel(UpdateStats);
             Invoke(d, new object[] { stats });
         }
 
+        /// <summary>
+        /// Load all objects for the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             foreach (string item in System.IO.Ports.SerialPort.GetPortNames())
@@ -132,6 +157,11 @@ namespace RoboWar
             }
         }
 
+        /// <summary>
+        /// Connect to a robot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -151,11 +181,22 @@ namespace RoboWar
             Console.WriteLine(serialPort1.ReadLine());
         }
 
+        /// <summary>
+        /// Get popular command by pressing a button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             Game.Stats.GetPopularCommand();
         }
 
+
+        /// <summary>
+        /// Handle timer ticks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick_1(object sender, EventArgs e)
         {
             int command = Game.Stats.GetPopularCommand();
