@@ -27,6 +27,7 @@ namespace RoboWar
         /// <param name="irc">IRC object that commands will come from</param>
         public Game(IRC irc)
         {
+            // Commando's hier toevoegen
             Commands = new List<string>()
             {
                 "up",
@@ -84,15 +85,16 @@ namespace RoboWar
 
         public List<string> CommandList;
 
+        /// <summary>
+        /// Clears all command counts and rebuilds the list
+        /// </summary>
         private void clearCommandList()
         {
             hanglock = true;
 
-            Commands = new Dictionary<string, int>();
-
-            foreach (string comm in CommandList)
+            foreach (var command in Commands.Keys)
             {
-                Commands[comm] = 0;
+                Commands[command] = 0;
             }
 
             hanglock = false;
@@ -151,27 +153,38 @@ namespace RoboWar
                 OnStatUpdate(this);
         }
 
+
+        /// <summary>
+        /// Gets the command with the most votes
+        /// </summary>
+        /// <returns>Integer of command index</returns>
         public int GetPopularCommand()
         {
+            // Get the maximum value, so we know what key to look for
             int val = Commands.Values.Max();
-            string command_end = "";
+            string commandBuffer = "";
             bool allAreNull = true;
 
+            //Iterate through the keys to find the correct values
             foreach (string command in Commands.Keys)
             {
+                // See if a command is above zero
                 if (Commands[command] > 0)
                     allAreNull = false;
                     
                 if (Commands[command] == val)
                 {
-                    command_end = command;
+                    commandBuffer = command;
                     break;
                 }
             }
-            int commandNumber = CommandList.IndexOf(command_end);
+            // Get the index of the command
+            int commandNumber = CommandList.IndexOf(commandBuffer);
 
+            //Reset commandlist
             clearCommandList();
 
+            //If all commands are null, send 100 as an error code
             if (allAreNull)
             {
                 return 100;
