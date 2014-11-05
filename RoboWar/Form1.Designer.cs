@@ -52,13 +52,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_robot_connect = new System.Windows.Forms.Button();
             this.combo_com_ports = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.numericDelayForCommand = new System.Windows.Forms.NumericUpDown();
-            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.text_how_to = new System.Windows.Forms.TextBox();
+            this.checkUseRandom = new System.Windows.Forms.CheckBox();
             this.Stats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_right)).BeginInit();
@@ -67,6 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_up)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericDelayForCommand)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -141,7 +146,6 @@
             // 
             // text_oauth
             // 
-            this.text_oauth.Enabled = false;
             this.text_oauth.Location = new System.Drawing.Point(67, 84);
             this.text_oauth.Name = "text_oauth";
             this.text_oauth.Size = new System.Drawing.Size(100, 20);
@@ -154,7 +158,7 @@
             this.text_log.Name = "text_log";
             this.text_log.ReadOnly = true;
             this.text_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.text_log.Size = new System.Drawing.Size(626, 241);
+            this.text_log.Size = new System.Drawing.Size(626, 154);
             this.text_log.TabIndex = 10;
             // 
             // button_start
@@ -179,12 +183,12 @@
             this.Stats.Controls.Add(this.label7);
             this.Stats.Controls.Add(this.label6);
             this.Stats.Controls.Add(this.label5);
-            this.Stats.Location = new System.Drawing.Point(12, 256);
+            this.Stats.Location = new System.Drawing.Point(12, 169);
             this.Stats.Name = "Stats";
             this.Stats.Size = new System.Drawing.Size(200, 114);
             this.Stats.TabIndex = 12;
             this.Stats.TabStop = false;
-            this.Stats.Text = "groupBox1";
+            this.Stats.Text = "Total Commands";
             // 
             // num_shoot
             // 
@@ -268,25 +272,25 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button_robot_connect);
             this.groupBox1.Controls.Add(this.combo_com_ports);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Location = new System.Drawing.Point(219, 257);
+            this.groupBox1.Location = new System.Drawing.Point(219, 176);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.Size = new System.Drawing.Size(200, 107);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Serial Ports";
             // 
-            // button1
+            // button_robot_connect
             // 
-            this.button1.Location = new System.Drawing.Point(6, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_robot_connect.Location = new System.Drawing.Point(6, 44);
+            this.button_robot_connect.Name = "button_robot_connect";
+            this.button_robot_connect.Size = new System.Drawing.Size(188, 23);
+            this.button_robot_connect.TabIndex = 2;
+            this.button_robot_connect.Text = "Connect To Robot";
+            this.button_robot_connect.UseVisualStyleBackColor = true;
+            this.button_robot_connect.Click += new System.EventHandler(this.button1_Click);
             // 
             // combo_com_ports
             // 
@@ -315,7 +319,7 @@
             // 
             // numericDelayForCommand
             // 
-            this.numericDelayForCommand.Location = new System.Drawing.Point(426, 268);
+            this.numericDelayForCommand.Location = new System.Drawing.Point(6, 17);
             this.numericDelayForCommand.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -334,24 +338,56 @@
             0,
             0,
             0});
+            this.numericDelayForCommand.ValueChanged += new System.EventHandler(this.numericDelayForCommand_ValueChanged);
             // 
-            // button2
+            // groupBox2
             // 
-            this.button2.Location = new System.Drawing.Point(426, 295);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.groupBox2.Controls.Add(this.checkUseRandom);
+            this.groupBox2.Controls.Add(this.numericDelayForCommand);
+            this.groupBox2.Location = new System.Drawing.Point(425, 176);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(136, 107);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Command Interval";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.text_how_to);
+            this.groupBox3.Location = new System.Drawing.Point(568, 176);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(229, 100);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "How To Play";
+            // 
+            // text_how_to
+            // 
+            this.text_how_to.Location = new System.Drawing.Point(7, 17);
+            this.text_how_to.Multiline = true;
+            this.text_how_to.Name = "text_how_to";
+            this.text_how_to.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.text_how_to.Size = new System.Drawing.Size(216, 77);
+            this.text_how_to.TabIndex = 0;
+            this.text_how_to.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // checkUseRandom
+            // 
+            this.checkUseRandom.AutoSize = true;
+            this.checkUseRandom.Location = new System.Drawing.Point(0, 43);
+            this.checkUseRandom.Name = "checkUseRandom";
+            this.checkUseRandom.Size = new System.Drawing.Size(132, 17);
+            this.checkUseRandom.TabIndex = 15;
+            this.checkUseRandom.Text = "Use random command";
+            this.checkUseRandom.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 378);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.numericDelayForCommand);
+            this.ClientSize = new System.Drawing.Size(809, 288);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Stats);
             this.Controls.Add(this.button_start);
@@ -369,7 +405,6 @@
             this.Name = "Form1";
             this.Text = "Twitch Plays Robowars";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.Stats.ResumeLayout(false);
             this.Stats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_shoot)).EndInit();
@@ -380,6 +415,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericDelayForCommand)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,13 +449,16 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_robot_connect;
         private System.Windows.Forms.ComboBox combo_com_ports;
         private System.Windows.Forms.Label label10;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.NumericUpDown numericDelayForCommand;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox text_how_to;
+        private System.Windows.Forms.CheckBox checkUseRandom;
     }
 }
 

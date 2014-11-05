@@ -14,6 +14,8 @@ namespace RoboWar
         public List<IRCMessage> Messages = new List<IRCMessage>();
         public event NewMessage OnMessageParse;
 
+        private string chan;
+
         public IRC()
         {
             Console.WriteLine(@"Init");
@@ -94,7 +96,7 @@ namespace RoboWar
         /// </summary>
         /// <param name="message">Contents of the message</param>
         /// <param name="chan">Channel you'll be sending it to</param>
-        public void SendMessage(string message, string chan)
+        public void SendMessage(string message)
         {
             Irc.SendMessage(SendType.Message,chan, message);
         }
@@ -121,8 +123,9 @@ namespace RoboWar
         /// <param name="chan">Channel you want to join</param>
         /// <param name="port">Port to connect on</param>
         /// <param name="serverHost">Hostname of the server to connect to. IPs are allowed</param>
-        public void Main(string nick, string chan, int port = 6667, string serverHost = "irc.twitch.tv")
+        public void Main(string nick, string chan, int port = 6667, string serverHost = "irc.twitch.tv", string oath = null)
         {
+            this.chan = chan;
             // UTF-8 test
             Irc.Encoding = System.Text.Encoding.UTF8;
             // wait time between messages, we can set this lower on own irc servers
@@ -146,7 +149,12 @@ namespace RoboWar
 
             try
             {
-                Irc.Login(nick, nick);
+                if(oath!= null)
+                    Irc.Login(nick, nick, 1, nick, oath);
+                else
+                {
+                    Irc.Login(nick, nick);
+                }
 
                 Irc.RfcJoin(chan);
 

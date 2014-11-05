@@ -11,9 +11,9 @@ namespace RoboWar
 
         public delegate void UpdateControl(object sender, IRCMessage message);
         public delegate void UpdateStatsDel(GameStats stats);
-        public IRC Irc;
-        public Game Game;
-        public EV3Messenger Robot;
+        public IRC Irc = null;
+        public Game Game = null;
+        public EV3Messenger Robot = null;
 
         /// <summary>
         /// Initialize the form
@@ -26,8 +26,13 @@ namespace RoboWar
             {
                 combo_com_ports.Items.Add(port);
             }
+
+            combo_com_ports.SelectedIndex = 0;
             timer1.Interval = (int)numericDelayForCommand.Value;
             timer1.Tick += timer1_Tick;
+
+            text_how_to.Text =
+                "First, connect to your robot using EV3, and try sending a message to the Control channel, with a 0.\r\n If this doesn't work, move on to a different com port.\r\n After that, fill the com port box with the desired port.\r\n Press connect to IRC, and then connect to robot. Then start the game.";
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -60,7 +65,7 @@ namespace RoboWar
         /// </summary>
         public void StartIrc()
         {
-            Irc.Main(text_nick.Text, text_chan.Text, serverHost: text_host.Text);
+            Irc.Main(text_nick.Text, text_chan.Text, 6667, text_host.Text, text_oauth.Text);
         }
 
         /// <summary>
@@ -105,6 +110,7 @@ namespace RoboWar
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Irc != null)
+                Irc.SendMessage("Well, that's it for this time. Bye!");
                 Irc.Exit();
 
             if (Robot != null)
@@ -120,8 +126,18 @@ namespace RoboWar
         {
             if (Game == null)
             {
+                if (Irc == null)
+                {
+                    MessageBox.Show("Connect to IRC first!");
+                    return;
+                }
+                if (Robot == null)
+                {
+                    MessageBox.Show("Not connected to robot!");
+                    return;
+                }
                 button_start.Text = "Stop the game";
-                Game = new Game(Irc);
+                Game = new Game(Irc, checkUseRandom.Checked);
                 Game.Stats.OnStatUpdate += stats_OnStatUpdate;
 
                 timer1.Start();
@@ -130,6 +146,7 @@ namespace RoboWar
             {
                 timer1.Stop();
                 Game = null;
+                Irc.SendMessage("That's it for this round! I'll be waiting until my operator sends his next command");
                 button_start.Text = "Start the game";
             }
 
@@ -145,19 +162,6 @@ namespace RoboWar
         }
 
         /// <summary>
-        /// Load all objects for the form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            foreach (string item in System.IO.Ports.SerialPort.GetPortNames())
-            {
-                combo_com_ports.Items.Add(item);
-            }
-        }
-
-        /// <summary>
         /// Connect to a robot
         /// </summary>
         /// <param name="sender"></param>
@@ -168,10 +172,11 @@ namespace RoboWar
             {
                 Robot = new EV3Messenger();
                 Robot.Connect(combo_com_ports.Text);
-
+                MessageBox.Show("Successfully connected to Robot");
             }
             catch (NullReferenceException ex)
             {
+                MessageBox.Show("Connection Failed!");
                 Console.WriteLine(ex.ToString());
             }
         }
@@ -203,6 +208,27 @@ namespace RoboWar
 
             if(command != 100)
                 Robot.SendMessage("Control", command);
+        }
+
+        private void numericDelayForCommand_ValueChanged(object sender, EventArgs e)
+        {
+            bool reenable = false;
+
+            if (timer1.Enabled)
+            {
+                timer1.Stop();
+                reenable = true;
+            }
+
+            timer1.Interval = (int) numericDelayForCommand.Value;
+
+            if(reenable)
+                timer1.Start();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

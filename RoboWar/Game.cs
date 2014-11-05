@@ -14,18 +14,13 @@ namespace RoboWar
 
         public GameStats Stats { get; private set; }
 
-        public IRC Irc
-        {
-            get { return _irc; }
-        }
-
-        private IRC _irc;
+        public IRC Irc;
 
         /// <summary>
         /// Sets up game status
         /// </summary>
         /// <param name="irc">IRC object that commands will come from</param>
-        public Game(IRC irc)
+        public Game(IRC irc, bool useRandomCommand)
         {
             // Commando's hier toevoegen
             Commands = new List<string>()
@@ -39,17 +34,17 @@ namespace RoboWar
             };
             Console.WriteLine("Initializing Game");
 
-            this._irc = irc;
+            this.Irc = irc;
             Console.WriteLine("Got IRC");
 
             irc.OnMessageParse += irc_OnMessageParse;
             Console.WriteLine("Added Message Parsing Method");
 
-            Stats = new GameStats(this.Commands);
+            Stats = new GameStats(this.Commands, useRandomCommand);
             Console.WriteLine("Initialized GameStats");
 
             //TODO: fix channel
-            this._irc.SendMessage("The game is on!", "#twitchwars1");
+            this.Irc.SendMessage("The game is on!");
         }
 
         /// <summary>
@@ -60,7 +55,7 @@ namespace RoboWar
         {
             foreach (string comm in Commands)
 	        {
-		        if(message.Body.Contains(comm))
+		        if(message.Body.StartsWith(comm))
                 {
                     Stats.AddStat(comm);
                 }
@@ -74,6 +69,8 @@ namespace RoboWar
         public delegate void GameStatsUpdated(GameStats stats);
         public event GameStatsUpdated OnStatUpdate;
         private bool hanglock = false;
+        private bool useRandomCommand;
+        private Random rand;
 
         public int CommandUp = 0;
         public int CommandDown = 0;
@@ -90,24 +87,38 @@ namespace RoboWar
         /// </summary>
         private void clearCommandList()
         {
+            if (hanglock)
+            {
+                while (hanglock)
+                    continue;
+            }
+
             hanglock = true;
 
-            foreach (var command in Commands.Keys)
+            Commands = new Dictionary<string, int>();
+
+            foreach (var command in CommandList)
             {
                 Commands[command] = 0;
             }
 
             hanglock = false;
+
+            return;
         }
 
         /// <summary>
         /// Initializes gamestat object
         /// </summary>
-        public GameStats(List<string> commands )
+        public GameStats(List<string> commands, bool useRandomCommand )
         {
             Console.WriteLine("Init Gamestats");
 
             CommandList = commands;
+
+            rand = new Random();
+
+            this.useRandomCommand = useRandomCommand;
 
             foreach (string command in commands)
             {
@@ -123,6 +134,8 @@ namespace RoboWar
         {
             if(hanglock)
                 return;
+
+            hanglock = true;
 
             switch(comm)
             {
@@ -151,6 +164,10 @@ namespace RoboWar
             }
             if (OnStatUpdate != null)
                 OnStatUpdate(this);
+
+            hanglock = false;
+
+            return;
         }
 
 
@@ -187,7 +204,10 @@ namespace RoboWar
             //If all commands are null, send 100 as an error code
             if (allAreNull)
             {
-                return 100;
+                if (useRandomCommand)
+                    return rand.Next(0, CommandList.Count);
+                else
+                    return 100;
             }
 
             return commandNumber;
